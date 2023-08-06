@@ -13,6 +13,8 @@ Home Assistant integration with FoxESS T series via Modbus TCP. Features:
 
 ![Screenshot](images/ha_values.png)
 
+The goal is generally same as in https://github.com/assembly12/Foxess-T-series-ESPHome-Home-Assistant but we use a stock RS485-to-LAN or RS485-to-WiFi adapter instead of a custom ESP8266-based device
+
 ## Installation
 1. Connect your TCP485-to-LAN or TCP485-to-WiFi converter. See [Adapter connection](#adapter-connection) section below for details and [this list](adapters/README.md) for tested adapters. 
 2. Ensure your FoxESS inverter is set to `Comm` in `Settings` -> `CT/Meter` (if this setting is not available, you need to contact the FoxESS service to upgrade the firmware). 
