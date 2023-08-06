@@ -1,6 +1,6 @@
-# Foxess T series readnig via Modbus
+# FoxESS T series readnig via Modbus
 
-Home Assistant integration with Foxess T series via Modbus TCP. Features:
+Home Assistant integration with FoxESS T series via Modbus TCP. Features:
 
 * local integration without cloud access
 * high data rates possible (interval of a few seconds)
@@ -21,7 +21,7 @@ Home Assistant integration with Foxess T series via Modbus TCP. Features:
    * Note: ensure you have `packages: !include_dir_named packages` in your `configuration.yaml` file. See
      [this](https://www.home-assistant.io/docs/configuration/packages/) for details.
    * Note: alternatively you can copy the contents of `foxess.yaml` to your `configuration.yaml` file.
-4. Restart Home Assistant.
+4. Restart Home Assistant (full service restart, not quick reload).
 
 ## Adapter connection
 Connect the adapter to the FoxESS connector to pins 1 and 2 (not 3 and 4).
