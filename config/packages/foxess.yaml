@@ -1,0 +1,116 @@
+modbus:
+  - name: "foxess"
+    type: rtuovertcp
+    host: <your rs485 adapter ip or hostname>
+    port: 8234 # or whatever port you have configured
+    close_comm_on_error: true
+    delay: 5
+    timeout: 5
+    sensors:
+      - name: foxess_r10800
+        slave: 1
+        input_type: input
+        address: 10800
+        count: 20
+        scan_interval: 10.3
+        data_type: custom
+        structure: ">20h"
+      - name: foxess_r10500
+        slave: 1
+        input_type: input
+        address: 10500
+        count: 20
+        scan_interval: 10.1
+        data_type: custom
+        structure: ">20h"
+      - name: foxess_r10700
+        slave: 1
+        input_type: input
+        address: 10700
+        count: 20
+        scan_interval: 10.2
+        data_type: custom
+        structure: ">20h"
+      - name: foxess_r11200
+        slave: 1
+        input_type: input
+        address: 11200
+        count: 3
+        scan_interval: 10.3
+        data_type: custom
+        structure: ">3h"
+
+
+template:
+  - sensor:
+      - name: "FoxESS Grid Voltage R"
+        unit_of_measurement: "V"
+        state: >
+            {{ states('sensor.foxess_r10700').split(',')[0] | float(nan) * 0.1 }}
+  - sensor:
+      - name: "FoxESS Grid Voltage S"
+        unit_of_measurement: "V"
+        state: >
+            {{ states('sensor.foxess_r10700').split(',')[4] | float(nan) * 0.1 }}
+  - sensor:
+      - name: "FoxESS Grid Voltage T"
+        unit_of_measurement: "V"
+        state: >
+            {{ states('sensor.foxess_r10700').split(',')[8] | float(nan) * 0.1 }}
+  - sensor:
+      - name: "FoxESS Grid Frequency R"
+        unit_of_measurement: "Hz"
+        state: >
+            {{ states('sensor.foxess_r10700').split(',')[2] | float(nan) * 0.01 }}
+  - sensor:
+      - name: "FoxESS Grid Frequency S"
+        unit_of_measurement: "Hz"
+        state: >
+            {{ states('sensor.foxess_r10700').split(',')[6] | float(nan) * 0.01 }}
+  - sensor:
+      - name: "FoxESS Grid Frequency T"
+        unit_of_measurement: "Hz"
+        state: >
+            {{ states('sensor.foxess_r10700').split(',')[10] | float(nan) * 0.01 }}
+  - sensor:
+      - name: "FoxESS Current to R"
+        unit_of_measurement: "A"
+        state: >
+            {{ states('sensor.foxess_r10700').split(',')[1] | float(nan) * 0.1 }}
+  - sensor:
+      - name: "FoxESS Current to S"
+        unit_of_measurement: "A"
+        state: >
+            {{ states('sensor.foxess_r10700').split(',')[5] | float(nan) * 0.1 }}
+  - sensor:
+      - name: "FoxESS Current to T"
+        unit_of_measurement: "A"
+        state: >
+            {{ states('sensor.foxess_r10700').split(',')[9] | float(nan) * 0.1 }}
+  - sensor:
+      - name: "FoxESS Strip 1 Voltage"
+        unit_of_measurement: "V"
+        state: >
+            {{ states('sensor.foxess_r10800').split(',')[0] | float(nan) * 0.1 }}
+  - sensor:
+      - name: "FoxESS Strip 1 Current"
+        unit_of_measurement: "A"
+        state: >
+            {{ states('sensor.foxess_r10800').split(',')[1] | float(nan) * 0.1 }}
+  - sensor:
+      - name: "FoxESS Produced power"
+        unit_of_measurement: "kW"
+        state: >
+            {{ states('sensor.foxess_r10500').split(',')[7] | float(nan) * 0.001 }}
+
+  - sensor:
+      - name: "FoxESS Temperature 1"
+        unit_of_measurement: "°C"
+        state: >
+            {{ states('sensor.foxess_r11200').split(',')[0] | float(nan) }}
+
+  - sensor:
+      - name: "FoxESS Temperature 2"
+        unit_of_measurement: "°C"
+        state: >
+            {{ states('sensor.foxess_r11200').split(',')[2] | float(nan) }}
