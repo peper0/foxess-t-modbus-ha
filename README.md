@@ -35,3 +35,7 @@ Connect the adapter to the FoxESS connector to pins 1 and 2 (not 3 and 4).
 | 5  GND           | GND     |
 
 ![Adapter connection](images/connection.png)
+
+## Tested configurations
+
+* Inverter FoxESS T6 (not G3), Master version 3.35, Slave version 3.01, Manager version 3.10.
